@@ -4,48 +4,59 @@ A machine learning-based algorithmic trading system that integrates LSTM predict
 
 ## Project Structure
 
+```
 AlgoTrader/
 ├── src/
-│ ├── data/ # Data collection and processing
-│ ├── models/ # LSTM and trading models
-│ └── utils/ # Helper functions
-├── config/ # Configuration files
-└── notebooks/ # Jupyter notebooks for analysis
+│   ├── data/          # Data collection and processing
+│   ├── models/        # LSTM and trading models
+│   └── utils/         # Helper functions
+├── config/            # Configuration files
+└── notebooks/         # Jupyter notebooks for analysis
+```
 
 ## Environment Setup
 
 1. Create and activate conda environment:
+
+   ```bash
    conda create -n algotrading python=3.9
    conda activate algotrading
+   ```
 
 2. Install dependencies:
 
-# Install TensorFlow for Mac
+   ```bash
+   # Install TensorFlow for Mac
+   conda install -c apple tensorflow-deps
+   python -m pip install tensorflow-macos tensorflow-metal
 
-conda install -c apple tensorflow-deps
-python -m pip install tensorflow-macos tensorflow-metal
-
-# Install other dependencies
-
-conda install -c conda-forge pandas numpy scikit-learn matplotlib seaborn jupyter ipython pyyaml
-pip install alpaca-py yfinance
-conda install -c conda-forge ta-lib
+   # Install other dependencies
+   conda install -c conda-forge pandas numpy scikit-learn matplotlib seaborn jupyter ipython pyyaml
+   pip install alpaca-py yfinance
+   conda install -c conda-forge ta-lib
+   ```
 
 ## API Keys and Configuration
 
 Store your API keys in config/keys.yaml. Never commit this file to version control!
 
 Example keys.yaml structure:
+
+```yaml
 api_keys:
-alpha_vantage: "5O7VTPF7G6OFH4L4"
-alpaca:
-api_key: "your_alpaca_key"
-api_secret: "your_alpaca_secret"
+  alpha_vantage: "5O7VTPF7G6OFH4L4"
+  alpaca:
+    api_key: "your_alpaca_key"
+    api_secret: "your_alpaca_secret"
+```
 
 To use the keys in your code:
+
+```python
 with open('config/keys.yaml', 'r') as file:
-keys = yaml.safe_load(file)
+    keys = yaml.safe_load(file)
 alpha_vantage_key = keys['api_keys']['alpha_vantage']
+```
 
 ## Security Note
 
@@ -65,10 +76,16 @@ alpha_vantage_key = keys['api_keys']['alpha_vantage']
 ## Important Commands
 
 Start paper trading:
+
+```bash
 python src/models/trading_system.py
+```
 
 Collect new data:
+
+```bash
 python src/data/collector.py
+```
 
 ## Model Details
 
