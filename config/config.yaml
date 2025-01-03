@@ -1,0 +1,48 @@
+# AlgoTrader Configuration
+
+# Data collection settings
+data:
+  ticker_list: ["AAPL", "MSFT", "GOOG"] # List of tickers to trade
+  start_date: "2020-01-03" # 5 years ago
+  end_date: "2025-01-03" # Current
+  timeframe: "1D" # Daily data
+
+# API configuration
+api:
+  alpaca:
+    paper_trading: true # Set to false for live trading
+    # These will be loaded from keys.yaml
+    # api_key: 'YOUR_API_KEY'
+    # secret_key: 'YOUR_SECRET_KEY'
+
+# Feature configuration
+features:
+  technical_indicators:
+    - "SMA" # Simple Moving Average
+    - "RSI" # Relative Strength Index
+    - "MACD" # Moving Average Convergence Divergence
+    - "Volatility"
+    - "Volume_Change"
+
+  sentiment_analysis:
+    enabled: false # Set to true if you want to use news sentiment
+    metrics:
+      - "avg_sentiment"
+      - "sentiment_std"
+      - "news_count"
+
+# Model parameters
+model:
+  type: "LSTM" # or 'MLAlgoTrader'
+  sequence_length: 60
+  train_test_split: 0.8
+  batch_size: 32
+  epochs: 100
+  validation_split: 0.2
+
+# Trading parameters
+trading:
+  max_position_size: 0.1 # Maximum position size as fraction of portfolio
+  stop_loss: 0.02 # Stop loss as fraction of position
+  take_profit: 0.04 # Take profit as fraction of position
+  risk_per_trade: 0.01 # Risk per trade as fraction of portfolio
